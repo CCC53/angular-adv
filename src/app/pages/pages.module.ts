@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { ComponentsModule } from '../components/components.module';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Graph1Component } from './graph1/graph1.component';
@@ -19,7 +20,8 @@ import { PagesComponent } from './pages.component';
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ComponentsModule,
   ],
   exports: [
     DashboardComponent,
