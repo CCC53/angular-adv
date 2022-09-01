@@ -13,7 +13,9 @@ export class SidebarService {
       routes: [
         { title: 'Main', url: '' },
         { title: 'Progress Bar', url: 'progress' },
-        { title: 'Graphs', url: 'graph1' }
+        { title: 'Graphs', url: 'graph1' },
+        { title: 'Promises', url: 'promises' },
+        { title: 'RXJS', url: 'rxjs' }
       ]
     }
   ]

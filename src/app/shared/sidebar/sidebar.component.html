@@ -24,7 +24,8 @@
                         </span>
                     </a>
                     <ul aria-expanded="false" class="collapse">
-                        <li *ngFor="let route of menu.routes"><a [routerLink]="route.url">{{route.title}}</a></li>
+                        <li *ngFor="let route of menu.routes"><a [routerLink]="route.url"
+                            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{route.title}}</a></li>
                     </ul>
                 </li>
             </ul>
