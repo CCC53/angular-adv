@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { FormlyModule } from '@ngx-formly/core';
+import { HttpClientModule } from '@angular/common/http';
+
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   exports: [
     RegisterComponent,
@@ -17,7 +22,10 @@ import { LoginComponent } from './login/login.component';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    ReactiveFormsModule,
+    FormlyModule.forChild(),
+    FormlyBootstrapModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }

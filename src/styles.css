@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-#themecolors .selector {
+#themecolors .selector .link {
     cursor: pointer;
+}
+
+.link {
+    cursor: pointer ;
+}
+
+.link:hover {
+    color: white !important;
 }
