@@ -1,5 +1,5 @@
 
-export interface User {
+export interface UserTest {
     id: number;
     email: string;
     avatar: string;
@@ -8,5 +8,5 @@ export interface User {
 }
 
 export interface Response {
-    data: User[];
+    data: UserTest[];
 }

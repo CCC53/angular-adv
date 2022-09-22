@@ -10,3 +10,8 @@
 .link:hover {
     color: white !important;
 }
+
+.avatar {
+    height: 250px;
+    width: 250px;
+}

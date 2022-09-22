@@ -1,10 +1,11 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, NgZone } from '@angular/core';
-import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 import Swal from 'sweetalert2';
 import { fields } from './login.component.fields';
-import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { LoginForm } from 'src/types/auth';
 
 declare const gapi:any;
 
@@ -19,10 +20,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
   @ViewChild('googleButton') googleButton : ElementRef = {} as ElementRef;
   form = new FormGroup({});
   fields: FormlyFieldConfig[] = fields;
-  model = { email: localStorage.getItem('email') || null, remember: localStorage.getItem('remember') || false };
+  model: LoginForm = { email: localStorage.getItem('email') || '', remember: Boolean(localStorage.getItem('remember')) || false } as LoginForm;
   auth: any;
 
-  constructor(private router: Router, private userService: UserService, private ngZone: NgZone) { }
+  constructor(private router: Router, private authService: AuthService, private ngZone: NgZone) { }
 
   ngAfterViewInit(): void {
     this.renderButton();
@@ -31,11 +32,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-  onSubmit(model: any) {
-    this.userService.loginUser(model).subscribe({ 
+  onSubmit(model: LoginForm) {
+    this.authService.login(model).subscribe({ 
       next: res => {
         if (model.remember) {
-          localStorage.setItem('remember', model.remember);
+          localStorage.setItem('remember', String(model.remember));
           localStorage.setItem('email', model.email);
         } else {
           localStorage.removeItem('remember');
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   attachSignin(element: ElementRef) {
     this.auth.attachClickHandler(element, {}, (user: any) => {
       const token = user.getAuthResponse().id_token;
-      this.userService.loginGoogle(token).subscribe(() => {
+      this.authService.loginGoogle(token).subscribe(() => {
         this.ngZone.run(() => {
           this.router.navigateByUrl('/');
         });
@@ -59,8 +60,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
   } 
 
   async startApp() {
-    await this.userService.initGoogle();
-    this.auth = this.userService.auth;
+    await this.authService.initGoogle();
+    this.auth = this.authService.auth;
     this.attachSignin(this.googleDiv.nativeElement);
   };
 

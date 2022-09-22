@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
+import { FormlyModule } from '@ngx-formly/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Graph1Component } from './graph1/graph1.component';
@@ -11,6 +13,8 @@ import { PagesComponent } from './pages.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { ProfileComponent } from './profile/profile.component';
+
 
 
 @NgModule({
@@ -21,13 +25,16 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     PagesComponent,
     AccountSettingsComponent,
     PromisesComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
     ComponentsModule,
+    ReactiveFormsModule,
+    FormlyModule.forChild()
   ],
   exports: [
     DashboardComponent,

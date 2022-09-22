@@ -1,12 +1,4 @@
-
-export interface User {
-    _id: string;
-    name: string;
-    email: string;
-    image: string;
-    role: string;
-    google: boolean;
-}
+import { User } from "./user";
 
 export interface RegisterForm {
     name: string;
@@ -16,12 +8,23 @@ export interface RegisterForm {
     terms: boolean;
 }
 
-export interface UserRes {
+export interface UserLoginRes {
     token: string;
+}
+
+export interface UserRenewTokenRes {
+    token: string;
+    user: User;
 }
 
 export interface LoginForm {
     email: string;
     password: string;
     remember: boolean;
+}
+
+export interface TokenDecoded {
+    user: User;
+    iat: number;
+    exp: number;
 }
