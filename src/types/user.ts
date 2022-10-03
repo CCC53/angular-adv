@@ -17,3 +17,8 @@ export interface UpdateProfileForm {
 export interface UpdateUserResp {
     updated: boolean;
 }
+
+export interface GetUsersResp {
+    total: number;
+    users: User[];
+}

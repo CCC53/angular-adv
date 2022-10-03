@@ -9,6 +9,7 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
     { path: 'dashboard', component: PagesComponent, canActivate: [AuthGuard], children: [
@@ -18,7 +19,8 @@ const routes: Routes = [
         { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Account Settings' } },
         { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
         { path: 'rxjs', component: RxjsComponent, data: { title: 'RXJS' } },
-        { path: 'user-profile', component: ProfileComponent, data: { title: 'User profile' } }
+        { path: 'user-profile', component: ProfileComponent, data: { title: 'User profile' } },
+        { path: 'users', component: UsersComponent, data: { title: 'Users' } }
     ] }
 ];
 

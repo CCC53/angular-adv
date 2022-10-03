@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { RegisterForm, UserLoginRes } from 'src/types/auth';
-import { UpdateProfileForm, UpdateUserResp, User } from '../../types/user';
+import { GetUsersResp, UpdateProfileForm, UpdateUserResp, User } from '../../types/user';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -42,9 +42,20 @@ export class UserService {
   }
 
   updateUserProfile(formData: UpdateProfileForm): Observable<UpdateUserResp> {
-    return this.http.put<UpdateUserResp>(`${this.url}/users/${this.id}`, formData, { headers: { 'Authorization': this.token }}).pipe(
+    return this.http.put<UpdateUserResp>(`${this.url}/users/${this.id}`, formData).pipe(
       catchError((error) => {
         throw error.error.message
+      })
+    )
+  }
+
+  getUsers(page: number): Observable<GetUsersResp> {
+    return this.http.get<GetUsersResp>(`${this.url}/users?page=${page}`).pipe(
+      map(res => {
+        res.users.forEach(user => {
+          user.image ? user.image : (user.image = '../assets/no-image.jpg')
+        });
+        return res;
       })
     )
   }

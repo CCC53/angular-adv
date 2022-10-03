@@ -18,9 +18,7 @@ export class UploadService {
   uploadImage(type: string, id: string, file: File): Observable<UploadResp> {
     const formData = new FormData();
     formData.append('file', file);
-    return this.http.post<UploadResp>(`${this.apiUrl}/upload/${type}/${id}`, formData, {
-      headers: { 'Authorization': this.authService.token }
-    }).pipe(
+    return this.http.post<UploadResp>(`${this.apiUrl}/upload/${type}/${id}`, formData).pipe(
       catchError(error => {
         console.log(error);
         return of({ imageUploaded: null })

@@ -16,8 +16,11 @@ export class AuthService {
   
   auth: any;
   user: User = {} as User;
-  token: string = localStorage.getItem('token') || '';
   private url: string = environment.api_url;
+
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
   
   constructor(private http: HttpClient, private router: Router, private ngZone: NgZone) {
     this.initGoogle();
@@ -42,7 +45,7 @@ export class AuthService {
   }
 
   validateToken(): Observable<boolean> {
-    return this.http.get<UserRenewTokenRes>(`${this.url}/auth/renew`, { headers: { 'Authorization': this.token } }).pipe(
+    return this.http.get<UserRenewTokenRes>(`${this.url}/auth/renew`).pipe(
       map(({token, user}) => {
         localStorage.setItem('token', token);
         this.user = user;
