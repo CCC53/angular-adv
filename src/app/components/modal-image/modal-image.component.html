@@ -1,0 +1,29 @@
+<div class="modal-background animated fadeIn" [ngClass]="{ 'hidden': modalService.toggle }">
+    <div class="modal fade show" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: block;">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel1">Update profile picture</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card d-flex flex-column">
+                        <h4 class="card-title">Profile Picture</h4>
+                        <div class="avatar-container">
+                            <img *ngIf="!preview" [src]="modalService.image" alt="Profile picture" class="avatar">
+                            <img *ngIf="preview" [src]="preview" alt="Profile picture preview" class="avatar">
+                        </div>
+                        <br>
+                        <input type="file" (change)="onChangeFile($event)">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="closeModal()">Close</button>
+                    <button type="button" [disabled]="!file" (click)="onSubmitFile()" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

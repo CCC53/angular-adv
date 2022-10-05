@@ -4,7 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { FormlyModule } from '@ngx-formly/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Graph1Component } from './graph1/graph1.component';
@@ -35,6 +35,7 @@ import { UsersComponent } from './users/users.component';
     SharedModule,
     RouterModule,
     ComponentsModule,
+    FormsModule,
     ReactiveFormsModule,
     FormlyModule.forChild()
   ],

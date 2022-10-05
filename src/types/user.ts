@@ -12,6 +12,7 @@ export interface UpdateProfileForm {
     name: string;
     email: string;
     google: boolean;
+    role: string;
 }
 
 export interface UpdateUserResp {
@@ -21,4 +22,8 @@ export interface UpdateUserResp {
 export interface GetUsersResp {
     total: number;
     users: User[];
+}
+
+export interface DeleteUserResp {
+    deleted: boolean;
 }

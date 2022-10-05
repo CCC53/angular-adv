@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, map, mapTo, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { RegisterForm, UserLoginRes } from 'src/types/auth';
-import { GetUsersResp, UpdateProfileForm, UpdateUserResp, User } from '../../types/user';
+import { GetUsersResp, UpdateProfileForm, UpdateUserResp, User, DeleteUserResp } from '../../types/user';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -41,8 +41,8 @@ export class UserService {
     )
   }
 
-  updateUserProfile(formData: UpdateProfileForm): Observable<UpdateUserResp> {
-    return this.http.put<UpdateUserResp>(`${this.url}/users/${this.id}`, formData).pipe(
+  updateUser(formData: UpdateProfileForm, id: string): Observable<UpdateUserResp> {
+    return this.http.put<UpdateUserResp>(`${this.url}/users/${id}`, formData).pipe(
       catchError((error) => {
         throw error.error.message
       })
@@ -58,5 +58,9 @@ export class UserService {
         return res;
       })
     )
+  }
+
+  deleteUser(id: string): Observable<DeleteUserResp> {
+    return this.http.delete<DeleteUserResp>(`${this.url}/users/${id}`);
   }
 }

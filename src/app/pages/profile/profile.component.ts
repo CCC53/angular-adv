@@ -19,16 +19,18 @@ export class ProfileComponent implements OnInit {
   file: File | null = null;
   currentImage: string;
   preview: string | ArrayBuffer | null = null;
+  id: string;
 
   constructor(private userService: UserService, private uploadService: UploadService) {
     this.currentImage = userService.image;
+    this.id = userService.id;
   }
 
   ngOnInit(): void {
   }
 
   onSubmit(model: UpdateProfileForm) {
-    this.userService.updateUserProfile(model).subscribe({
+    this.userService.updateUser(model, this.id).subscribe({
       next: res => {
         this.userService.user.name = model.name;
         this.userService.user.email = model.email;
