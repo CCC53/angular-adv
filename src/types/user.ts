@@ -8,6 +8,12 @@ export interface User {
     google: boolean;
 }
 
+export interface UserPopulated {
+    _id: string;
+    name: string;
+    image: string;
+}
+
 export interface UpdateProfileForm {
     name: string;
     email: string;

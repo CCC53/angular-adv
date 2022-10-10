@@ -6,6 +6,7 @@ import { NgChartsModule } from 'ng2-charts';
 import { IncrementerComponent } from './incrementer/incrementer.component';
 import { DonutComponent } from './donut/donut.component';
 import { ModalImageComponent } from './modal-image/modal-image.component';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ModalImageComponent } from './modal-image/modal-image.component';
   imports: [
     CommonModule,
     FormsModule,
-    NgChartsModule
+    NgChartsModule,
+    PipesModule
   ],
   exports: [
     IncrementerComponent,

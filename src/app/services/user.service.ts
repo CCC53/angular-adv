@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError, map, mapTo, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { RegisterForm, UserLoginRes } from 'src/types/auth';
 import { GetUsersResp, UpdateProfileForm, UpdateUserResp, User, DeleteUserResp } from '../../types/user';
@@ -50,14 +50,7 @@ export class UserService {
   }
 
   getUsers(page: number): Observable<GetUsersResp> {
-    return this.http.get<GetUsersResp>(`${this.url}/users?page=${page}`).pipe(
-      map(res => {
-        res.users.forEach(user => {
-          user.image ? user.image : (user.image = '../assets/no-image.jpg')
-        });
-        return res;
-      })
-    )
+    return this.http.get<GetUsersResp>(`${this.url}/users?page=${page}`);
   }
 
   deleteUser(id: string): Observable<DeleteUserResp> {

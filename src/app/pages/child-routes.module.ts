@@ -10,6 +10,9 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 // Core
 import { UsersComponent } from './users/users.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctorComponent } from './doctor/doctor.component';
 
 const childRoutes: Routes = [
   { path: '', component: DashboardComponent, data: { title: 'Dashboard' } },
@@ -19,7 +22,10 @@ const childRoutes: Routes = [
   { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
   { path: 'rxjs', component: RxjsComponent, data: { title: 'RXJS' } },
   { path: 'user-profile', component: ProfileComponent, data: { title: 'User profile' } },
-  { path: 'users', component: UsersComponent, data: { title: 'Users' } }
+  { path: 'users', component: UsersComponent, data: { title: 'Users' } },
+  { path: 'hospitals', component: HospitalsComponent, data: { title: 'Hospitals' } },
+  { path: 'doctors', component: DoctorsComponent, data: { title: 'Doctors' } },
+  { path: 'doctors/:id', component: DoctorComponent, data: { title: 'Doctor' } }
 ]
 
 @NgModule({

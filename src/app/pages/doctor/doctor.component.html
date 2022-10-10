@@ -1,0 +1,55 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-boy">
+                <div class="card-body">
+                    <h4 class="card-title">Doctor</h4>
+                    <h6 class="card-subtitle">Update information</h6>
+                    <form class="form-horizontal p-t-20" [formGroup]="form" (submit)="onSubmit()">
+                        <div class="form-group row" *ngIf="doctor">
+                            <label for="exampleInputuname3" class="col-sm-3 control-label">Picture</label>
+                            <div class="col-sm-9">
+                                <img class="w100" [src]="doctor.image | image" alt="">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="exampleInputuname3" class="col-sm-3 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input formControlName="name" type="text" class="form-control" placeholder="Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="exampleInputEmail3" class="col-sm-3 control-label">Hospital</label>
+                            <div class="col-sm-9">
+                                <div class="input-group">
+                                    <select class="form-control" formControlName="hospital">
+                                        <option value="">Select Hospital</option>
+                                        <option *ngFor="let hospital of hospitals" [value]="hospital._id">{{hospital.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row m-b-0">
+                            <div class="offset-sm-3 col-sm-9">
+                                <button class="btn btn-success waves-effect waves-light" [disabled]="form.invalid">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 animated fadeIn" *ngIf="hospitalSelected">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Hospital</h4>
+                <h5 class="card-subtitle">Assigned hospital {{hospitalSelected.name}}</h5>
+                <div class="d-flex justify-content-center">
+                    <img class="w300" [src]="hospitalSelected.image | image" alt="Hospital picture">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

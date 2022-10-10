@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
 import { FormlyModule } from '@ngx-formly/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PipesModule } from '../pipes/pipes.module';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Graph1Component } from './graph1/graph1.component';
@@ -15,7 +17,9 @@ import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UsersComponent } from './users/users.component';
-
+import { HospitalsComponent } from './hospitals/hospitals.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctorComponent } from './doctor/doctor.component';
 
 
 @NgModule({
@@ -28,7 +32,10 @@ import { UsersComponent } from './users/users.component';
     PromisesComponent,
     RxjsComponent,
     ProfileComponent,
-    UsersComponent
+    UsersComponent,
+    HospitalsComponent,
+    DoctorsComponent,
+    DoctorComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +44,9 @@ import { UsersComponent } from './users/users.component';
     ComponentsModule,
     FormsModule,
     ReactiveFormsModule,
-    FormlyModule.forChild()
+    FormlyModule.forChild(),
+    FormlyBootstrapModule,
+    PipesModule
   ],
   exports: [
     DashboardComponent,

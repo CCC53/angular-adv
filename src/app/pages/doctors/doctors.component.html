@@ -1,0 +1,73 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                 <input class="form-control" placeholder="Search" type="text" [(ngModel)]="search" (keyup)="loadSearchDoctors()">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn fast" *ngIf="loading">
+    <div class="col-12">
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading">Loading...</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Please waiting</p>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="!loading">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Doctors</h4>
+                        <h6 class="card-subtitle">Doctors registered (total: {{data.total}}).</h6>
+                    </div>
+                    <div class="col">
+                        <div class="text-right">
+                            <button class="btn btn-primary" routerLink="nuevo">
+                                <i class="fa fa-hospital-o"></i>
+                                Register new doctor
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="w100">Avatar</th>
+                                <th class="w200">Name</th>
+                                <th class="text-nowrap w200">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let doctor of data.doctors">
+                                <td>
+                                    <img (click)="openModal(doctor._id, doctor.image)" class="icon-avatar link" [src]="doctor.image | image" alt="Doctor photo">
+                                </td>
+                                <td>{{doctor.name}}</td>
+                                <td class="text-nowrap">
+                                    <a [routerLink]="doctor._id" data-toggle="tooltip" data-original-title="Edit">
+                                        <i class="fa fa-pencil text-inverse m-r-10"></i>
+                                    </a>
+                                    <a class="link" (click)="deleteDoctor(doctor._id)" data-toggle="tooltip" data-original-title="Remove">
+                                        <i class="fa fa-close text-danger"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-between">
+                        <button (click)="changePage(-5)" class="btn btn-secondary">Before page</button>
+                        <button (click)="changePage(5)" class="btn btn-secondary">Next page</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

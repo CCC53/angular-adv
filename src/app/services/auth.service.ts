@@ -49,7 +49,6 @@ export class AuthService {
       map(({token, user}) => {
         localStorage.setItem('token', token);
         this.user = user;
-        this.user.image = this.setImageUrl();
         return true;
       }),
       catchError(error => {
@@ -79,9 +78,4 @@ export class AuthService {
       });
     })
   }
-
-  setImageUrl() {
-    return this.user.image ? this.user.image : '../assets/no-image.jpg';
-  }
-
 }
