@@ -1,10 +1,12 @@
 
+export type ValidRoles = 'USER_ROLE' | 'ADMIN_ROLE';
+
 export interface User {
     _id: string;
     name: string;
     email: string;
     image: string;
-    role: string;
+    role: ValidRoles;
     google: boolean;
 }
 

@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginForm, UserLoginRes, UserRenewTokenRes } from 'src/types/auth';
 import { User } from 'src/types/user';
+import { SideBarMenu } from '../../types/shared';
 
 declare const gapi: any;
 
@@ -28,7 +29,7 @@ export class AuthService {
 
   login(formdata: LoginForm): Observable<UserLoginRes> {
     return this.http.post<UserLoginRes>(`${this.url}/auth`, formdata).pipe(
-      tap(({token}) => localStorage.setItem('token', token)),
+      tap(({token, menu}) => this.loadDataToLocalStorage(token, menu)),
       catchError(error => {
         throw error.error.message
       })
@@ -37,7 +38,7 @@ export class AuthService {
 
   loginGoogle(token: string): Observable<UserLoginRes> {
     return this.http.post<UserLoginRes>(`${this.url}/auth/google`, {token}).pipe(
-      tap(({token}) => localStorage.setItem('token', token)),
+      tap(({token, menu}) => this.loadDataToLocalStorage(token, menu)),
       catchError(error => {
         throw error.error.message
       })
@@ -46,8 +47,8 @@ export class AuthService {
 
   validateToken(): Observable<boolean> {
     return this.http.get<UserRenewTokenRes>(`${this.url}/auth/renew`).pipe(
-      map(({token, user}) => {
-        localStorage.setItem('token', token);
+      map(({token, user, menu}) => {
+        this.loadDataToLocalStorage(token, menu)
         this.user = user;
         return true;
       }),
@@ -59,7 +60,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    this.removeDataFromLocalStorage()
     this.auth.signOut().then(() => {
       this.ngZone.run(() => {
         this.router.navigateByUrl('/login');
@@ -77,5 +78,15 @@ export class AuthService {
         resolve(this.auth);
       });
     })
+  }
+
+  loadDataToLocalStorage(token: string, menu: SideBarMenu[]) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
+  removeDataFromLocalStorage() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('menu');
   }
 }

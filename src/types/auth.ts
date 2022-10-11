@@ -1,3 +1,4 @@
+import { SideBarMenu } from "./shared";
 import { User } from "./user";
 
 export interface RegisterForm {
@@ -10,11 +11,13 @@ export interface RegisterForm {
 
 export interface UserLoginRes {
     token: string;
+    menu: SideBarMenu[];
 }
 
 export interface UserRenewTokenRes {
     token: string;
     user: User;
+    menu: SideBarMenu[];
 }
 
 export interface LoginForm {

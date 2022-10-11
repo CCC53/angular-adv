@@ -1,0 +1,102 @@
+<div class="row animated fadeIn">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Users</h3>
+
+                <div class="alert alert-info" *ngIf="data.users.length === 0">
+                    <p class="mb-0">
+                        No users found
+                    </p>
+                </div>
+
+                <div class="table-responsive" *ngIf="data.users.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of data.users">
+                                <td>
+                                    <img class="icon-avatar" [src]="user.image | image" alt="">
+                                </td>
+                                <td>{{user.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            
+            <div class="card-body">
+                <h3>Hospitals</h3>
+
+                <div class="alert alert-info" *ngIf="data.hospitals.length === 0">
+                    <p class="mb-0">
+                        No hospitals found
+                    </p>
+                </div>
+
+                <div class="table-responsive" *ngIf="data.hospitals.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let hospital of data.hospitals">
+                                <td>
+                                    <img class="icon-avatar" [src]="hospital.image | image" alt="">
+                                </td>
+                                <td>{{hospital.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h3>Doctors</h3>
+
+                <div class="alert alert-info" *ngIf="data.doctors.length === 0">
+                    <p class="mb-0">
+                        No doctors found
+                    </p>
+                </div>
+
+                <div class="table-responsive" *ngIf="data.doctors.length > 0">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Avatar</th>
+                                <th>Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let doctor of data.doctors">
+                                <td>
+                                    <img class="icon-avatar" [src]="doctor.image | image" alt="">
+                                </td>
+                                <td>
+                                    <a [routerLink]="['/dashboard/doctors', doctor._id]">{{doctor.name}}</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

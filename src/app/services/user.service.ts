@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { RegisterForm, UserLoginRes } from 'src/types/auth';
-import { GetUsersResp, UpdateProfileForm, UpdateUserResp, User, DeleteUserResp } from '../../types/user';
+import { GetUsersResp, UpdateProfileForm, UpdateUserResp, User, DeleteUserResp, ValidRoles } from '../../types/user';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -30,6 +30,10 @@ export class UserService {
 
   get image(): string {
     return this.authService.user.image;
+  }
+
+  get role(): ValidRoles {
+    return this.authService.user.role;
   }
 
   createUser(formData: RegisterForm): Observable<UserLoginRes> {
